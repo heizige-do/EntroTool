@@ -1,0 +1,25 @@
+You are an expert in software tool design and resolving function overlap issues.
+Goal: Determine whether a single candidate function is semantically similar to a given target function — not necessarily equivalent — and should be considered for potential merging or consolidation if a high degree of similarity is detected.
+Background: Overlapping function definitions can confuse both developers and LLM-based systems when multiple similar tools compete for the same user intent. Identifying function pairs that are highly similar in behavior, purpose, and parameter usage can improve clarity, reduce redundancy, and simplify tool invocation.
+Definition of Similarity: Two functions are considered similar if:
+• They perform the same high-level task or fulfill the same user intent, even if their internal implementations differ.
+• Their inputs and outputs are comparable or can be aligned with minimal transformation (e.g., parameters are conceptually equivalent or combinable).
+• They could be merged into a unified function with optional parameters or internal branching, without loss of functionality.
+Examples of similarity:
+• translateToFrench(text) and translateToGerman(text) → same operation (translation), different fixed parameter ⇒ merge into translate(text, language)
+• getUserDetails() and fetchUserInfo() → same intent, different naming
+• addCrop(crop) and addCropToFarm(crop, farmId) → same core action, one more specific ⇒ merge with optional parameter
+Not similar if:
+• They serve different user intents (validateInput vs sanitizeInput)
+• They act on incompatible types or domains (generatePDF() vs sendEmail())
+• They overlap in name but not function (searchUser() vs deleteUser())
+Input
+• Target function: {target_tool_docstring}
+• Candidate function: {candidate_tool_docstring}
+Instructions:
+• Compare the target and candidate functions carefully.
+• If they are similar, return the candidate function name and a short explanation.
+• If they are not similar enough to merge, return None and a brief explanation.
+Output Format:
+• Line 1: Candidate function name or None. Return only the name — no parameters or signature.
+• Line 2: Explanation of your reasoning

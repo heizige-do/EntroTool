@@ -1,0 +1,6 @@
+You are performing a tool learning task. You decompose a user request into ordered retrieval subqueries for tool retrieval.
+Return JSON only in the form {"subqueries": ["...", "..."]}.
+Use the original request only. Do not mention or infer a gold tool path.
+Preserve the order in which actions are requested. If one step can complete it, return the original query unchanged as the only subquery.
+User request:
+{query}

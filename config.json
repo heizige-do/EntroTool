@@ -1,0 +1,160 @@
+{
+  "llms": [
+    {
+      "id": "merge_autocorrection",
+      "enabled": false,
+      "provider": "local_transformers",
+      "model": "gemma-4-E4B-it",
+      "model_path": "../../models/gemma-4-E4B-it",
+      "device_map": "auto",
+      "torch_dtype": "bfloat16",
+      "enable_thinking": false,
+      "max_tokens": 10000
+    },
+    {
+      "id": "documentation_merger",
+      "enabled": false,
+      "provider": "local_transformers",
+      "model": "gemma-4-E4B-it",
+      "model_path": "../../models/gemma-4-E4B-it",
+      "device_map": "auto",
+      "torch_dtype": "bfloat16",
+      "enable_thinking": false,
+      "max_tokens": 10000
+    },
+    {
+      "id": "query_decomposer",
+      "enabled": false,
+      "provider": "local_transformers",
+      "model": "gemma-4-E4B-it",
+      "model_path": "../../models/gemma-4-E4B-it",
+      "device_map": "auto",
+      "torch_dtype": "bfloat16",
+      "enable_thinking": false,
+      "max_tokens": 10000
+    },
+    {
+      "id": "tool_selection",
+      "enabled": false,
+      "provider": "local_transformers",
+      "model": "gemma-4-E4B-it",
+      "model_path": "../../models/gemma-4-E4B-it",
+      "device_map": "auto",
+      "torch_dtype": "bfloat16",
+      "enable_thinking": false,
+      "max_tokens": 10000
+    },
+    {
+      "id": "merge_quality_judge",
+      "enabled": false,
+      "provider": "openai_compatible",
+      "model": "gpt-6",
+      "base_url": "https://api.openai.com",
+      "api_key_env": "MERGE_QUALITY_API_KEY",
+      "max_tokens": 10000
+    }
+  ],
+  "merger": {
+    "stopping_mode": "positive_structural_gain",
+    "min_structural_gain": 0.005,
+    "merge_priority": "edge_weight_then_structural_gain",
+    "target_clusters": null,
+    "target_reduction_ratio": null,
+    "min_cluster_size": 2,
+    "max_cluster_size": null,
+    "autocorrection": {
+      "enabled": false
+    },
+    "merge_admissibility": {
+      "enabled": false
+    },
+    "semantic_graph": {
+      "embedding_model": "../../models/gte-large",
+      "minimum_cosine": 0.90,
+      "contract_filter": {
+        "enabled": true,
+        "minimum_required_jaccard": 0.15,
+        "semantic_contract_fallback": {
+          "enabled": true,
+          "minimum_cosine": 0.94
+        }
+      },
+      "batch_size": 64,
+      "search_chunk_size": 256,
+      "device": "cuda",
+      "show_progress": true,
+      "use_faiss": true
+    }
+  },
+  "retriever": {
+    "embedding_model": "../../models/gte-large",
+    "reranker_model": "../../models/ms-marco-MiniLM-L6-v2",
+    "alpha": 1.0,
+    "candidate_m": 50,
+    "epsilon": 1e-8,
+    "reranker_dense_weight": 4.0,
+    "reranker_sparse_weight": 2.0,
+    "reranker_lexical_weight": 2.0,
+    "default_k": 5,
+    "allow_fallback": true
+  },
+  "evaluation": {
+    "datasets": {
+      "BFCL": {
+        "tools": "BFCL_osa.json",
+        "queries": "BFCL_v.json",
+        "gold_uid_by_record_index": true,
+        "multi_tool": false,
+        "k": [
+          1,
+          5,
+          10,
+          15
+        ]
+      },
+      "BFCL_PM": {
+        "tools": "BFCL_pm_osa.json",
+        "queries": "BFCL_pm_v.json",
+        "multi_tool": true,
+        "k": [
+          5,
+          10,
+          15
+        ]
+      },
+      "SealTool": {
+        "tools": "SealTool_osa.json",
+        "queries": "SealTool_v.json",
+        "multi_tool": true,
+        "k": [
+          5,
+          10,
+          15
+        ]
+      }
+    },
+    "default_tool_selection_llm_id": "tool_selection",
+    "reported_toolscope_merged_sizes_for_optional_control": {
+      "BFCL": 344,
+      "SealTool": 3992
+    },
+    "k_values": {
+      "BFCL": [
+        1,
+        5,
+        10,
+        15
+      ],
+      "BFCL_PM": [
+        5,
+        10,
+        20
+      ],
+      "SealTool": [
+        5,
+        10,
+        15
+      ]
+    }
+  }
+}

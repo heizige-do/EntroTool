@@ -1,0 +1,13 @@
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+openai>=1.0
+sentence-transformers>=3.0
+tqdm>=4.66
+transformers>=5.18
+torch>=2.14
+torchvision>=0.29
+accelerate>=1.15
+# Optional acceleration. Without it, exact chunked cosine search is used.
+# faiss-cpu>=1.8

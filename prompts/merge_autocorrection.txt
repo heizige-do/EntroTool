@@ -1,0 +1,18 @@
+You are verifying whether the following Python functions can be merged into ONE API.
+Similarity rubric (must satisfy 1 AND 2):
+• 1. Same high-level user intent or task.
+• 2. Inputs/outputs can be aligned by adding OPTIONAL parameters or renaming arguments (no functionality lost).
+Non-merge only if INTENT clearly differs.
+Output (JSON only)
+{
+"merge": "MERGE_OK",
+"reason": "<optional <25 words>"
+}
+OR
+{
+"merge": "MERGE_BAD",
+"clusters": [["idA", "idB"], ["idC"]],
+"reason": "< <25 words >"
+}
+List of candidate functions (ID : signature — doc):
+{GROUP_BLOCK}

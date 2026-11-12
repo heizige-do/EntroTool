@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.pyright/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local models and caches
+models/
+.cache/
+.huggingface/
+
+# Experiment artifacts
+outputs/
+outputs_*/
+*.log
+
+
+# Generated visualizations
+*.html
+

@@ -1,0 +1,21 @@
+You are an expert Python API architect:
+Task:
+Given multiple semantically similar function definitions, merge them into ONE canonical function named {keep_name}.
+Similarity rubric (all must hold to merge):
+1. Same user intent/task.
+2. Inputs & outputs can be aligned via optional parameters.
+3. No functionality is lost after merge.
+Instructions:
+• Keep {keep_name}'s parameter order & defaults first.
+• Add only unique parameters from the other functions; make them optional.
+• The ORIGINAL SCHEMA BLOCK is authoritative. The final signature and docstring must explicitly cover every original required field and every unique optional field.
+• Preserve the original field names, types, defaults, enum values, and field meanings. Do not replace them with a generic `parameters` object.
+• If two fields represent the same concept but have different names, keep both names in the unified interface and document their relationship; never silently drop either field.
+• Include all original result fields and explain which operation or response they belong to.
+• Combine docstrings: start with 1–2 concise sentences of purpose, then list arguments (name, type, default, description).
+• Do NOT output implementation code or markdown fences.
+• Output only the final signature and full docstring.
+{keep_block}
+{prune_block}
+ORIGINAL SCHEMA BLOCK:
+{schema_block}

@@ -1,0 +1,20 @@
+You are an expert API Architect and LLM Tool Learning Auditor. Your task is to 
+Judge two independent properties of this tool merge.
+
+1. `merge_reasonable`: Do the source tools have similar functionality and perform similar user tasks, so merging them can reasonably reduce redundant tools?
+
+Tools may still be merged when their names, parameters, outputs, or calling forms differ, as long as they provide similar functions or perform similar tasks. Added optional parameters or an operation/mode parameter are allowed. Return false only when the tools perform clearly different functions or tasks.
+
+2. `functionally_complete`: Can the merged tool fully replace the functionality of every source tool?
+
+Return true when all original functions and tasks can be performed through the merged tool. Return false when any original function or task is missing. Judge this independently from `merge_reasonable`.
+
+Return exactly one JSON object and nothing else. Do not explain the decisions. Use boolean values only.
+
+{"merge_reasonable": true, "functionally_complete": true}
+
+SOURCE TOOLS BEFORE MERGE:
+{SOURCE_TOOLS_BLOCK}
+
+MERGED TOOL AFTER MERGE:
+{MERGED_TOOL_BLOCK}
