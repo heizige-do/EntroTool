@@ -1,21 +1,19 @@
 # EntroTool
-As large language model (LLM) agents gain access to increasingly
-extensive tool repositories, redundant functionality and overlapping
-descriptions make accurate tool selection increasingly challenging.
-Tool merging offers a promising solution by consolidating related
-operations into unified interfaces, thereby reducing the number
-of tools exposed to LLM agents. However, existing approaches
-often group semantically equivalent operations based on graph
-connectivity, where indirect connections may lead to overly broad
-groups that obscure functional distinctions among tools. To address
-this limitation, we propose **EntroTool**, a **structural entropy-guided**
-framework for tool merging and selection. By minimizing structural
-entropy over a weighted tool graph, EntroTool identifies coherent
-tool groups that account for both internal connectivity and group
-boundaries. Each group is subsequently consolidated into a unified
-tool interface, while a hybrid retrieval mechanism selects relevant
-merged tools for downstream execution. Experiments across three
-benchmark-derived collections and three LLM selectors demonstrate consistent improvements over competitive baselines.
+As LLM agents interact with increasingly large tool repositories,
+redundant functionality and overlapping interfaces complicate ac-
+curate tool selection. Existing merging approaches rely heavily
+on pairwise similarity and graph connectivity, potentially produc-
+ing groups that obscure functional distinctions. We propose **En-
+troTool**, a **structural entropy-guided** framework for tool merging
+and selection. EntroTool constructs a contract-aware weighted se-
+mantic graph and employs entropy-guided grouping to identify
+structurally coherent tool groups. An LLM-based verifier further
+ensures group-level functional compatibility before canonicaliza-
+tion. For downstream selection, hybrid retrieval and cross-encoder
+reranking identify relevant canonical tools under a bounded can-
+didate budget. Experiments across multiple benchmark-derived
+collections and LLM backbones demonstrate improved selection
+and merge quality, with substantially fewer offline LLM calls.
 
 ![EntroTool](./figs/frame.png)
 
