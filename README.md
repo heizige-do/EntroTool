@@ -1,19 +1,5 @@
 # EntroTool
-As LLM agents interact with increasingly large tool repositories,
-redundant functionality and overlapping interfaces complicate ac-
-curate tool selection. Existing merging approaches rely heavily
-on pairwise similarity and graph connectivity, potentially produc-
-ing groups that obscure functional distinctions. We propose **En-
-troTool**, a **structural entropy-guided** framework for tool merging
-and selection. EntroTool constructs a contract-aware weighted se-
-mantic graph and employs entropy-guided grouping to identify
-structurally coherent tool groups. An LLM-based verifier further
-ensures group-level functional compatibility before canonicaliza-
-tion. For downstream selection, hybrid retrieval and cross-encoder
-reranking identify relevant canonical tools under a bounded can-
-didate budget. Experiments across multiple benchmark-derived
-collections and LLM backbones demonstrate improved selection
-and merge quality, with substantially fewer offline LLM calls.
+As LLM agents increasingly rely on large tool repositories, functional redundancy makes it difficult to organize tools into effective retrieval inventories. Existing merging approaches often rely on pairwise similarity and graph connectivity, which may propagate local similarities into groups that cross functional boundaries. We propose EntroTool, a structure-aware framework that uses structural entropy to guide tool merging. By jointly considering interface compatibility and global graph organization, EntroTool identifies coherent merging boundaries while preserving functionally distinct operations. Group-level verification further ensures the functional completeness of the resulting canonical tools. Experiments across multiple benchmarks and LLM backbones demonstrate consistent improvements in canonical tool selection and functional completeness over competitive baselines, while substantially reducing offline LLM calls.
 
 ![EntroTool](./figs/frame.png)
 
